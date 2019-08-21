@@ -14,9 +14,19 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    
     "lib": [
       "es2018",
       "dom"
     ]
   }
+  
 }
+
+// {
+//   "compileOnSave":"",
+//   "compilerOptions": {
+
+//   },
+//   "include": ["node_modules/angular-bootstrap-md/**/*.ts ", "src/**/*.ts"]
+// }

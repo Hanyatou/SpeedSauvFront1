@@ -1,0 +1,34 @@
+<header>
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+        <mdb-navbar-brand>
+            <a  routerLink = '/'  >
+                <img src="../assets/images/logoSpeed.png" style="width:20%; height: 40%;"> </a>
+        </mdb-navbar-brand>
+        <links >
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbWavesEffect>
+                    <a class="nav-link active" routerLink = '/'>Accueil </a>
+                
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a routerLink = './connexion' class="nav-link"  > Connexion</a>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a class="nav-link" routerLink = './enregistrement'> Inscription</a>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a class="nav-link " routerLink='./confidentialite' >Confidentialité(RGPD)</a>
+                </li>
+
+                <li class="nav-item waves-light" mdbWavesEffect>
+                        <a class="nav-link " routerLink='./UpdateProfileComponent' >Mise à jour de vos données</a>
+                    </li>
+            </ul>
+      
+        </links>
+    </mdb-navbar>
+
+</header>
+
+
+<router-outlet></router-outlet>

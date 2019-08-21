@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import
+@import "~angular-bootstrap-md/assets/scss/mdb"
+"", */
+
+
+body{
+    background: #f2f4f6!important;
+}
