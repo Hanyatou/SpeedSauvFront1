@@ -1,59 +1,117 @@
-<div class="col-md-4 mx-auto">
-    <!-- Default form register -->
-<form class="text-center border border-light p-5">
+<div class="row">
+  <div class="col-md-4 mx-auto my-5"> 
+    <section class="form-elegant">
+      <mdb-card>
+        <mdb-card-body class="mx-4">
+          <!--Header-->
+          <div class="text-center">
+              <h3 class="dark-grey-text mb-2">
+                <strong>Inscription</strong>
+              </h3>
+            </div> 
+          
+            <form [formGroup]="defaultRegisterForm">
+                <div class="md-form">
+                    <!-- First name -->
+                   <!--  [(ngModel)]="Inscription.name" #name="ngModel" -->
+                    <input type="text" id="defaultRegisterFormFirstName" class="form-control"  formControlName="defaultRegisterFormFirstName"  placeholder="Prénom" required mdbInput >
+                    <div *ngIf="defaultRegisterFormFirstName.invalid && (defaultRegisterFormFirstName.dirty || defaultRegisterFormFirstName.touched)"
+                      class="alert alert-danger">
+            
+                      <div *ngIf="defaultRegisterFormFirstName.errors.required">
+                        Prénom requis.
+                      </div>
+                    </div>
+  
+                  </div>
+                  <div class="md-form">
+                   <!-- Last name -->
+                    <input type="text"   id="defaultRegisterFormLastName" class="form-control"  formControlName="defaultRegisterFormLastName"   placeholder="Nom" required mdbInput>
+                      <div *ngIf="defaultRegisterFormLastName.invalid && (defaultRegisterFormLastName.dirty || defaultRegisterFormLastName.touched)"
+                        class="alert alert-danger">
+                          <div *ngIf="defaultRegisterFormLastName.errors.required">
+                              Nom requis
+                          </div>
+                      </div>
+                    </div>
+                    <div class="md-form ">
+                      <input type="text"  id="defaultRegisterFormNumSecu" class="form-control"  length="15"
+                      formControlName="defaultRegisterFormNumSecu"  minlength="15" maxlength="15" placeholder="Numéro de sécurité social"  required mdbInput>
+                      <div *ngIf="defaultRegisterFormNumSecu.invalid && (defaultRegisterFormNumSecu.dirty || defaultRegisterFormNumSecu.touched)"
+                      class="alert alert-danger">
+                        <div *ngIf="defaultRegisterFormNumSecu.errors.required">
+                          Numéro de sécurité social requis
+                        </div>
+                        <div *ngIf="defaultRegisterFormNumSecu.errors.minlength!= defaultRegisterFormNumSecu.errors.maxlength">
+                         15 chiffres sont requis pour le numéro de sécurité national
+                        </div>
+                      </div>
+                    
+                    <div *ngIf="defaultRegisterFormNumSecu.touched  && defaultRegisterFormNumSecu.valid ">
+                        <!-- <div *ngIf= defaultRegisterFormNumSecu.isNumber == false >
+                            15 chiffres sont requis.
+                        </div> -->
+                        
+                      </div>
+                    </div>
+                    
+                    <div class="md-form "> 
+                       <!-- E-mail -->
+                        <input type="email" id="defaultRegisterFormEmail" class="form-control" placeholder="E-mail" required
+                        formControlName="defaultRegisterFormEmail" mdbInput  >
+                        <div *ngIf="defaultRegisterFormEmail.invalid && (defaultRegisterFormEmail.dirty || defaultRegisterFormEmail.touched)"
+                          class="alert alert-danger">
+                          <div *ngIf="defaultRegisterFormEmail.errors.required">
+                          E-mail requis
+                          </div>
+                          </div>
+                    </div>
+                    <div class="md-form"> 
+                           <!-- Password -->
+                        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Mot de passe"  
+                        formControlName="defaultRegisterFormPassword"  required mdbInput> 
+                       <!--  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                        Au moins 8 caractères et 1 numérique
+                        </small> -->
+                        <div *ngIf="defaultRegisterFormPassword.invalid && (defaultRegisterFormPassword.dirty || defaultRegisterFormPassword.touched)"
+                          class="alert alert-danger">
+                          <div *ngIf="defaultRegisterFormPassword.errors.required">
+                            Mot de passe requis
+                          </div>
+                          </div>
+                    </div>
+                    <div class="md-form "> 
+                       <!-- confirmation de Password -->
+                      <input type="password" id="ConfirmeddefaultRegisterFormPassword" class="form-control" placeholder="Confirmer Mot de passe" 
+                        formControlName="ConfirmeddefaultRegisterFormPassword" required mdbInput>
+                    
+                        <div *ngIf="ConfirmeddefaultRegisterFormPassword.invalid && (ConfirmeddefaultRegisterFormPassword.dirty || ConfirmeddefaultRegisterFormPassword.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="ConfirmeddefaultRegisterFormPassword.errors.required">
+                          Mot de passe requis
+                        </div>
+                      </div>
+                        <div *ngIf="ConfirmeddefaultRegisterFormPassword.valid && (ConfirmeddefaultRegisterFormPassword.touched || ConfirmeddefaultRegisterFormPassword.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="ConfirmeddefaultRegisterFormPassword.value != defaultRegisterFormPassword.value ">
+                          les mots de passe ne sont pas identiques
+                        </div>
+                      </div> 
+                    </div>
+            </form>
 
-    <p class="h4 mb-4">Inscription</p>
-
-    <div class="form-row mb-4">
-      <div class="col">
-        <!-- First name -->
-        <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Prénom">
-      </div>
-      <div class="col">
-        <!-- Last name -->
-        <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Nom">
-      </div>
-    </div>
-
-    <!-- num sécur-->
-    <input type="number" id="defaultRegisterFormNumSecu" class="form-control mb-4" placeholder="Numéro de sécurité social">
-
-    <!-- E-mail -->
-    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-    
-    <!-- Password -->
-    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-     Au moins 8 caractères et 1 numérique
-    </small>
-
-    <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">Inscrire</button>
-
-    <!-- Social register -->
-    <p>Ou inscrivez-vous avec:</p>
-
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="facebook"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="twitter"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="linkedin"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="github"></mdb-icon>
-    </a>
-
-    <hr>
-
-    <!-- Terms of service -->
-    <p>En cliquant sur 
-      <em>Inscrire </em> vous acceptez
-      <a href="" target="_blank">notre charte de confidentialité </a></p>
-
-  </form>
-  <!-- Default form register -->
-
+            <div class="text-center mb-1">
+                <button type="submit" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"(click)="onSubmit()" mdbWavesEffect>Connectez-vous</button>
+              </div>
+        </mdb-card-body>
+        <div class="modal-footer mx-5 pt-1">
+            <p class="font-small grey-text d-flex justify-content-end">En cliquant sur Inscrire 
+              <a [routerLink]="['/confidentialité']" class="blue-text ml-1"> vous acceptez notre charte de confidentialité</a>
+            </p>
+          </div>
+      </mdb-card>
+    </section>
+  </div>
 </div>
+
+<router-outlet></router-outlet>
