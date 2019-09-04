@@ -26,10 +26,10 @@ import { AlertComponent } from './components/alert/alert.component';
 
 //les interceptors de token ou d'erreur créés 
 import { ErrorInterceptor} from './_interceptors/error-interceptor';
-//import { JwtInterceptor } from './_interceptors/jwt-interceptor';
+import { JwtInterceptor } from './_interceptors/jwt-interceptor';
 
 //les guards 
-//import { AuthGuard } from './_guards/auth.guard';
+import { AuthGuard } from './_guards/auth.guard';
 
 //les services 
 import { AlertService } from './_services/alert.service';
@@ -52,9 +52,9 @@ import { ValidateEmailComponent } from './validate-email/validate-email.componen
     ConfidentialiteComponent, 
     UpdateProfileComponent, 
     AdminComponent,
-     DeconnexionComponent,
-     AlertComponent,
-     ValidateEmailComponent,
+    DeconnexionComponent,
+    AlertComponent,
+    ValidateEmailComponent,
      
   ],
   imports: [
@@ -75,24 +75,19 @@ import { ValidateEmailComponent } from './validate-email/validate-email.componen
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-   // AuthGuard,
+    AuthGuard,
     AlertService,
     AuthentificationService,
     LoginDataService,
     PatCollectionService,
     AdminService,
     RegisterService,
-    /* ProjetService,
-    AlerteService,
-    IndicateurService,
-    ArbitrageService,
-    SujetService, */
-     ErrorInterceptor,
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      ErrorInterceptor,
+      JwtInterceptor,
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-    // provider used to create fake backend
-    // fakeBackendProvider
+    
 ],
   bootstrap: [AppComponent],
   

@@ -82,7 +82,7 @@ export class EnregistrementComponent implements OnInit {
                  data => {
                   console.log(" ok 1 ", data);
                   console.log(" ok 22 ", typeof( data['success']));
-                  if(data.success){
+                  if(data['success']){
                     console.log(" ok 223 ", data['success']);
                     this.router.navigate(['/validateEmail']);
                   }else{

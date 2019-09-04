@@ -11,7 +11,7 @@
  })
  export class AuthentificationService {
 
-    API_URI = 'https://speedsauvweb.glitch.me/ ';
+    API_URI = 'https://speedsauvweb.glitch.me/';
      private currentUserSubject: BehaviorSubject<LoginData>;
     public currentUser: Observable<LoginData>;
      // loggedIn = false;
@@ -40,14 +40,14 @@
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('token', user.token);
                     this.currentUserSubject.next(user);
                 }
 
                 if (email !== '' && password !== '') {
                     this.loggedIn.next(true);
                 }
-                console.log('user', user)
+                
 ;                return user;
             }));
 
