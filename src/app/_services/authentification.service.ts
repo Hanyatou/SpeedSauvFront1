@@ -11,7 +11,7 @@
  })
  export class AuthentificationService {
 
-    API_URI = 'https://speedsauvwe.glitch.me/ ';
+    API_URI = 'https://speedsauvweb.glitch.me/ ';
      private currentUserSubject: BehaviorSubject<LoginData>;
     public currentUser: Observable<LoginData>;
      // loggedIn = false;
@@ -35,7 +35,7 @@
 
     login(email: string, password: string, ) {
 
-        return this.http.post<any>(`${this.API_URI}/signIn`, { email: email, password: password })
+        return this.http.post<any>(`${this.API_URI}signIn`, { email: email, password: password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {

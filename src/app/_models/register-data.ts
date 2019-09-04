@@ -1,8 +1,8 @@
 export class RegisterData {
     prenom: string;
     nom: string;
-    numeroSecu: number;
-    email: string;
-    password: string;
+    sec_num: number;
+    user: string;
+    pwd: string;
   
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AlertService } from './../../_services/alert.service';
@@ -22,23 +22,12 @@ export class EnregistrementComponent implements OnInit {
   returnUrl : string;
   loggedIn = false;
   loggedOut =true;
-  inscript: RegisterService;
-
-  constructor(private fb:FormBuilder,
-    private route : ActivatedRoute,
-    private router: Router,
-    private alertS: AlertService,
-    private registerR: RegisterService,
-    private loginData: LoginDataService,
-    private auth: AuthentificationService,
-     ) {
-       // redirect to home if already logged in
-        if (this.auth.currentUserValue) {
-         this.router.navigate(['/UpdateProfile']);
-     }
-     }
+  messageR: string;
+   bool = true;
 
   ngOnInit() {
+    
+
     this.defaultRegisterForm = this.fb.group({
       defaultRegisterFormFirstName: ['', [Validators.required]],
       defaultRegisterFormLastName : ['', [Validators.required]],
@@ -54,34 +43,65 @@ export class EnregistrementComponent implements OnInit {
     this.returnUrl= this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+  constructor(private fb:FormBuilder,
+    private route : ActivatedRoute,
+    private router: Router,
+    private alertS: AlertService,
+    private registerR: RegisterService,
+    private loginData: LoginDataService,
+    private auth: AuthentificationService,
+     
+     ) {
+       // redirect to home if already logged in
+        if (this.auth.currentUserValue) {
+         this.router.navigate(['/UpdateProfile']);
+     }
+     }
+
 
   onSubmit(){
+
     this.submitted= true;
     
     // stop here is form is invalid
     if(this.defaultRegisterForm.invalid){
       return;
-    }
+    }else{
+      this.loading =true;
 
-    this.loading =true;
-    //
+    console.log( 'info',this.f.defaultRegisterFormFirstName.value );
     
-    console.log( 'info', this.defaultRegisterForm.value);
-    
-     this.loginData.register(this.defaultRegisterForm.value)
+     this.loginData.register( this.f.defaultRegisterFormFirstName.value, 
+        this.f.defaultRegisterFormFirstName.value,
+       this.f.defaultRegisterFormNumSecu.value, 
+        this.f.defaultRegisterFormEmail.value,
+        this.f.defaultRegisterFormPassword.value
+         )
              .pipe(first())
              .subscribe(
                  data => {
-        console.log('fghjklm hjklmù fghjk ok ');
-                     this.alertS.success('Inscription réussite', true);
-                     this.router.navigate(['/connexion']);
+                  console.log(" ok 1 ", data);
+                  console.log(" ok 22 ", typeof( data['success']));
+                  if(data.success){
+                    console.log(" ok 223 ", data['success']);
+                    this.router.navigate(['/validateEmail']);
+                  }else{
+                      this.messageR= "vide";
+                      if(data['message'] == 'userFound' ){
+                          this.messageR = 'cette adresse mail est déjà utilisée'
+                        
+                        }else{
+                          this.messageR = "Une erreur  technique s'est produite, veuillez réessayez dans un moment svp ."
+                      }
+                    
+                  }
+                 
                  },
-                 error => {
-      console.log('fghjklm hjklmù fghjk ok ');
-                   this.alertS.error(error);
-                     this.loading = false;
-                });
+     );
 
+    }
+
+    
 
   }
 
@@ -89,28 +109,6 @@ export class EnregistrementComponent implements OnInit {
     return this.defaultRegisterForm.controls;
   }
 
-  get defaultRegisterFormFirstName (){
-      return this.defaultRegisterForm.get('defaultRegisterFormFirstName');
-  }
-
-  get defaultRegisterFormLastName(){
-    return this.defaultRegisterForm.get('defaultRegisterFormLastName');
-  }
-
-  get defaultRegisterFormNumSecu(){
-    return this.defaultRegisterForm.get('defaultRegisterFormNumSecu');
-  }
-
-  get defaultRegisterFormEmail(){
-    return this.defaultRegisterForm.get('defaultRegisterFormEmail');
-  }
-
-  get defaultRegisterFormPassword(){
-    return this.defaultRegisterForm.get('defaultRegisterFormPassword');
-  }
-
-  get ConfirmeddefaultRegisterFormPassword(){
-    return this.defaultRegisterForm.get('ConfirmeddefaultRegisterFormPassword');
-  }
+ 
 
 }

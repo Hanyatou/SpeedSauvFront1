@@ -10,7 +10,7 @@
  })
   export class LoginDataService {
 
-   API_URI = ' https://speedsauvwe.glitch.me/ ';
+   API_URI = 'https://speedsauvweb.glitch.me/';
 
      constructor(private http: HttpClient) { }
 
@@ -39,12 +39,17 @@
             }))
     }
 
-    register(register: RegisterData) {
+    register( prenom: string,
+        nom: string,
+        sec_num: number,
+        user: string,
+        pwd: string) {
         var reqHeader = new HttpHeaders({ 
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser'))
          });
-        return this.http.post(`${this.API_URI}signUp'`, register, { headers: reqHeader });
+        return this.http.post(`${this.API_URI}signUp`, {prenom:prenom, nom: nom, 
+        sec_num: sec_num, user: user, pwd: pwd}, { headers: reqHeader });
     }
 
     update(user: LoginData) {

@@ -9,6 +9,7 @@ import { ConfidentialiteComponent } from './components/confidentialite/confident
 import { UpdateProfileComponent} from  './components/update-profile/update-profile.component';
 import { DeconnexionComponent } from './components/deconnexion/deconnexion.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ValidateEmailComponent } from './validate-email/validate-email.component';
 
 // guards
 //import { AuthGuard } from './_guards/auth.guard';
@@ -27,6 +28,7 @@ const routes: Routes = [
    { path: 'accueil', component: AccueilComponent},
    { path: 'deconnexion', component: DeconnexionComponent},
    { path: 'admin', component: AdminComponent/* , canActivate: [AuthGuard] */},
+   { path: 'validateEmail', component: ValidateEmailComponent /* , canActivate: [AuthGuard] */},
     
   // { path: '**', component: PageNotFoundComponent }
 

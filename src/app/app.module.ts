@@ -38,6 +38,7 @@ import { LoginDataService } from './_services/login-data.service';
 import { PatCollectionService } from './_services/pat-collection.service';
 import { AdminService } from './_services/admin.service';
 import { RegisterService } from './_services/register.service';
+import { ValidateEmailComponent } from './validate-email/validate-email.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { RegisterService } from './_services/register.service';
     AdminComponent,
      DeconnexionComponent,
      AlertComponent,
+     ValidateEmailComponent,
      
   ],
   imports: [
